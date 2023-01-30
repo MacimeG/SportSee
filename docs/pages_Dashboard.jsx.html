@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Dashboard.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Dashboard.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react-hooks/exhaustive-deps */
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import { Navigate, useParams } from "react-router-dom";
+import { getAverageSessions, getScore, getUser, getUserActivity, getUserPerf } from "../services/mock-api.js";
+
+import { useState, useEffect } from "react";
+import DataUser from "../components/DataUser";
+import '../styles/Dashboard.css'
+import GraphicWeight from "../components/GraphicWeight";
+import Linechart from "../components/Linechart";
+import GraphRadar from "../components/GraphRadar";
+import GraphRadial from "../components/GraphRadial";
+import { CardStat } from "../components/CardStat";
+
+/**
+ * @file Dashboard page
+ * render the whole page and call all charts components
+ * @returns {JSX.Element}
+ */
+
+export default function Dashboard() {
+    /**
+     * id user in url 
+     * @param {number} id 
+     */
+    const { id } = useParams()
+    const [data, setData] = useState([]);
+    const [isLoading, setLoading] = useState(true)
+    const [activity, setActivity] = useState([])
+    const [average, setAverage] = useState([])
+    const [perf, setPerf] = useState([])
+    const [scores, setScore] = useState([])
+
+    useEffect(() => {
+        getUser(setData, id, setLoading)
+        getUserActivity(setActivity, id, setLoading)
+        getAverageSessions(setAverage, id)
+        getUserPerf(setPerf, id, setLoading)
+        getScore(setScore, id)
+    }, [])
+
+    const parsed = parseInt(id)
+
+    if (window.location.pathname !== `/Dashboard/${id}`) {
+        return &lt;Navigate to="/Error/" />
+    }
+    if (parsed !== 12 &amp;&amp; parsed !== 18) {
+        return &lt;Navigate to="/Error/" />
+    }
+    if (isNaN(id)) {
+        return &lt;Navigate to="/Error/" />
+    }
+    /**
+     * const function who formated data to return data on good format for chart graphicWeight
+     * @param {Array} activity
+     * @param {number} kilogram value kilogram of user
+     * @param {number} calories value calories of user
+     * @returns {object} activityFormated
+     */
+    const activityFormated = activity?.data?.data?.sessions.map(({ kilogram, calories }, index) => {
+        return {
+            kilogram: kilogram,
+            calories: calories,
+            day: (index + 1)
+        }
+    })
+
+
+    return (
+        &lt;div className="dashboard_container">
+            &lt;Navbar />
+            &lt;Sidebar />
+            &lt;div className="dataUser_container">
+                &lt;div>
+                    {!isLoading ? &lt;DataUser name={data?.userInfos?.firstName} /> : null}
+
+                &lt;/div>
+
+                &lt;GraphicWeight sessions={activityFormated} />
+
+                &lt;div className="dataUser_graphRow">
+                    &lt;Linechart average={average?.data?.data?.sessions} />
+                    &lt;div>
+                        {!isLoading ? &lt;GraphRadar perf={perf?.data?.data} /> : null}
+                    &lt;/div>
+                    &lt;GraphRadial score={scores} />
+                &lt;/div>
+                &lt;div>
+                    {!isLoading ? &lt;CardStat value={data?.keyData} /> : null}
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    )
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ActivityData_ActivityData.html">ActivityData</a></li><li><a href="AverageSessionsData_AverageSessionsData.html">AverageSessionsData</a></li><li><a href="PerformanceData_PerformanceData.html">PerformanceData</a></li><li><a href="User_User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CardStat">CardStat</a></li><li><a href="global.html#CustomToolBar">CustomToolBar</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DataUser">DataUser</a></li><li><a href="global.html#Linechart">Linechart</a></li><li><a href="global.html#getAverageSessions">getAverageSessions</a></li><li><a href="global.html#getScore">getScore</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserPerf">getUserPerf</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Jan 27 2023 18:14:41 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

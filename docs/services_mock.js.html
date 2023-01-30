@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/mock.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/mock.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from "axios";
+
+import { User } from "../models/User"
+import { ActivityData } from "../models/ActivityData";
+import { AverageSessionsData } from "../models/AverageSessionsData";
+import { PerformanceData } from "../models/PerformanceData";
+
+let mock = false
+
+/**
+ * @async
+ * fetch data user
+ * @param {number} userId id of user
+ * @param {string} firstName firstName of user
+ * @param {string} lastName lastname of user
+ * @param {number} age age of user
+ * @returns {object}
+ */
+export async function getUser(setData, userId, setLoading) {
+    if (mock === true) {
+        const res = await fetch("../db.json")
+        const datas = await res.json()
+
+        for (const d of datas) {
+            if (d.id === +userId) {
+                const user = new User(d)
+
+                setLoading(false)
+                return setData(user)
+            }
+        }
+    }
+    else {
+        const response = await axios.get(`http://localhost:3000/user/${userId}`)
+            .catch((err) =>
+                alert("Erreur 503 : The server is currently unavailable.")
+            );
+        const user = new User(response.data)
+        setLoading(false)
+
+        return setData(user)
+        // await axios.get(`http://localhost:3000/user/${userId}`).then(
+        //     (response) => {
+        // setLoading(false)
+        //         const user = new User(response.data)
+        //        setData(user);
+        //     }
+        // )
+    }
+
+
+}
+
+// recuperer l'utilisateur route activity
+export async function getUserActivity(setData, userId) {
+    if (mock === true) {
+        const res = await fetch("../db.json")
+        const datas = await res.json()
+
+        for (const d of datas) {
+            if (d.id === +userId) {
+                let data = { "data": new ActivityData(d.activity) }
+                return setData(data)
+            }
+        }
+
+    }
+    else {
+        const response = await axios.get(`http://localhost:3000/user/${userId}/activity`)
+        const activityData = new ActivityData(response.data)
+        return setData(activityData)
+        // await axios.get(`http://localhost:3000/user/${userId}/activity`).then(
+        //     (response)=>{
+        //         const activityData = new ActivityData(response.data)
+
+        //         setData(activityData)
+        //     }
+        // )
+    }
+}
+
+// recuperer l'utilisateur route average-sessions
+
+export async function getAverageSessions(setData, userId) {
+    if (mock === true) {
+        const res = await fetch("../db.json")
+        const datas = await res.json()
+
+        for (const d of datas) {
+            if (d.id === +userId) {
+                let averageData = { "data": new AverageSessionsData(d.averageSessions) }
+                setData(averageData)
+            }
+        }
+
+    }
+    else {
+        const response = await axios.get(`http://localhost:3000/user/${userId}/average-sessions`)
+        const averageData = new AverageSessionsData(response.data)
+        return setData(averageData)
+        // await axios.get(`http://localhost:3000/user/${userId}/average-sessions`).then(
+        //     (response)=>{
+        //         const averageData = new AverageSessionsData(response.data)
+
+        //         setData(averageData)
+        //     }
+        // )
+    }
+}
+
+// recuperer l'utilisateur route performance
+
+export async function getUserPerf(setData, userId, setLoading) {
+    if (mock === true) {
+        const res = await fetch("../db.json")
+        const datas = await res.json()
+        for (const d of datas) {
+            if (d.id === +userId) {
+                let perfData = {
+                    "data": new PerformanceData(d.performance,)
+                }
+                setLoading(false)
+                return setData(perfData)
+            }
+        }
+
+    }
+    else {
+        const response = await axios.get(`http://localhost:3000/user/${userId}/performance`)
+        const perfData = new PerformanceData(response.data)
+        setLoading(false)
+
+        return setData(perfData)
+        // await axios.get(`http://localhost:3000/user/${userId}/performance`).then(
+        //     (response)=>{
+        // setLoading(false)
+        //         const perfData = new PerformanceData(response.data)
+
+        //         setData(perfData)
+        //     }
+        // )
+    }
+
+}
+
+// recuperer uniquement le score de l'user, avec son id.
+export async function getScore(setData, userId) {
+    if (mock === true) {
+        const res = await fetch("../db.json")
+        const datas = await res.json()
+        for (const d of datas) {
+            if (d.id === +userId) {
+                return setData(d.data.todayScore || d.data.score)
+            }
+        }
+
+    }
+    else {
+        const response = await axios.get(`http://localhost:3000/user/${userId}`)
+        return setData(response.data.data.score || response.data.data.todayScore)
+        //    await axios.get(`http://localhost:3000/user/${userId}`).then(
+        //         (response)=>{
+        //             setData(response.data.data.score || response.data.data.todayScore)
+        //         }
+        //     )
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DataUser">DataUser</a></li><li><a href="global.html#getUser">getUser</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Jan 27 2023 13:17:45 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

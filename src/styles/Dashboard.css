@@ -1,0 +1,115 @@
+.dataUser_container{
+    margin-left: 200px;
+}
+.dataUser_hello{
+    font-size: 48px;
+    margin-bottom: 0;
+}
+.dataUser_firstName{
+    color: #FF0101;
+    font-size: 48px;
+    margin-left: 10px;
+}
+.dataUser_commentaire{
+    margin-bottom: 60px;
+}
+.graphTitle{
+    z-index: 2;
+}
+.labelkg{
+    margin-bottom: 30px;
+    text-align: center;
+    margin-left: 5px;
+}
+.dataUser_graphRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 65%;
+    gap: 2rem;
+}
+.radialchart{
+    background-color: #f7f7f7;
+}
+.radialchart_title{
+    position: absolute;
+    z-index: 2;
+}
+.radialchart_score{
+    font-weight: 500;
+    margin-bottom: 0;
+    padding-left: 11px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.radialchart_blocScore{
+    position: absolute;
+    z-index: 2;
+    margin-top: 80px;
+    margin-left: 94px;
+    text-align: center;
+}
+.radialchart_text{
+    color: #74798C;
+    display: block;
+    width: 70px;
+    /* padding-left: 6px; */
+    text-align: center;
+}
+.cardStat{
+    width: min-content;
+    position: absolute;
+    top: 38%;
+    right: 10%;
+}
+.cardStatCal{
+    display: flex;
+    margin-bottom: 37.5px;
+    background-color:#f7f7f7;
+
+
+    padding: 30px 55px 25px 30px;
+}
+.cardStatProt{
+    display: flex;
+    margin-bottom: 37.5px;
+    background-color:#f7f7f7;
+
+
+    padding: 30px 55px 25px 30px;
+}
+.cardStatCarb{
+    display: flex;
+    margin-bottom: 37.5px;
+    background-color:#f7f7f7;
+    padding: 30px 55px 25px 30px;
+}
+.cardStatBurg{
+    display: flex;
+    padding: 30px 55px 25px 30px;
+    background-color:#f7f7f7;
+
+    /* margin-bottom: 70px; */
+}
+.cardValue{
+    font-weight: 700;
+    margin: 0;
+    margin-left: 10px;
+}
+.cardValue_type{
+    margin: 0;
+    margin-left: 10px;
+}
+.cardImg{
+    width: 60px;
+}
+
+/* .barChartContain{
+    height: 320px;
+    width: 835px;
+}
+
+.ResponsiveBar{
+    background-color: #fbfbfb;
+} */

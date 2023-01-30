@@ -1,0 +1,20 @@
+.custom-tooltip p{
+    width: 40px;
+    font-size: small;
+    line-height: 0;
+}
+.titleTimeSess{
+    position: absolute;
+    z-index: 1;
+    color: white;
+    width: 125px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+/* .custom-tooltip{
+    background-color: white;
+    color: #000;
+    width: 40px;
+    height: 25px;
+    outline: none;
+} */

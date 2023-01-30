@@ -1,0 +1,22 @@
+.title{
+    text-align: center;
+}
+.selectProfil{
+    text-align: center;
+}
+
+.containerCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link_accueil{
+    margin-right: 30px;
+}
+
+.linkUser{
+    text-decoration: none;
+    font-size: larger;
+    color: rgb(75, 75, 75);
+}

@@ -1,0 +1,16 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #020203;
+    height: 91px;
+}
+.navbar_logo{
+    width: 178px;
+    margin-left: -90px;
+}
+.navbar_link{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}

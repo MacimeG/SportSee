@@ -1,0 +1,30 @@
+.sidebar{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    /* height: 88.4vh; */
+    height: 102vh;
+    width: 117px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-bottom: 30px;
+}
+.icon{
+    width: 64px;
+    margin-bottom: 15px;
+}
+.icon_last{
+    margin-bottom: 70px;
+}
+.icon:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all ease-in-out 0.3s;
+}
+.copyright{
+    width: 11px;
+    position: absolute;
+    bottom: 20px;
+}
