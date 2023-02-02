@@ -11,16 +11,13 @@ import '../styles/Sidebar.css'
  */
 
 export default function Sidebar(){
-    // ecrire le reste du component.
     return(
         <aside className="sidebar">
-            {/* <div className='sidebarIcon'> */}
                 <img className='icon' src={iconZen} alt="iconZen"></img>
                 <img className='icon' src={iconSwim} alt="iconSwim"></img>
                 <img className='icon' src={iconBike} alt="iconBike"></img>
                 <img className='icon icon_last' src={iconWeight} alt="iconWeight"></img>
                 <img className='copyright' src={copyright} alt="copyright"></img>
-            {/* </div> */}
         </aside>
     )
 }

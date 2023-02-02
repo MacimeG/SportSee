@@ -41,13 +41,6 @@ export async function getUser(setData, userId, setLoading) {
         setLoading(false)
 
         return setData(user)
-        // await axios.get(`http://localhost:3000/user/${userId}`).then(
-        //     (response) => {
-        // setLoading(false)
-        //         const user = new User(response.data)
-        //        setData(user);
-        //     }
-        // )
     }
 
 
@@ -82,13 +75,6 @@ export async function getUserActivity(setData, userId) {
         const response = await axios.get(`http://localhost:3000/user/${userId}/activity`)
         const activityData = new ActivityData(response.data)
         return setData(activityData)
-        // await axios.get(`http://localhost:3000/user/${userId}/activity`).then(
-        //     (response)=>{
-        //         const activityData = new ActivityData(response.data)
-
-        //         setData(activityData)
-        //     }
-        // )
     }
 }
 
@@ -121,13 +107,6 @@ export async function getAverageSessions(setData, userId) {
         const response = await axios.get(`http://localhost:3000/user/${userId}/average-sessions`)
         const averageData = new AverageSessionsData(response.data)
         return setData(averageData)
-        // await axios.get(`http://localhost:3000/user/${userId}/average-sessions`).then(
-        //     (response)=>{
-        //         const averageData = new AverageSessionsData(response.data)
-
-        //         setData(averageData)
-        //     }
-        // )
     }
 }
 
@@ -162,14 +141,6 @@ export async function getUserPerf(setData, userId, setLoading) {
         setLoading(false)
 
         return setData(perfData)
-        // await axios.get(`http://localhost:3000/user/${userId}/performance`).then(
-        //     (response)=>{
-        // setLoading(false)
-        //         const perfData = new PerformanceData(response.data)
-
-        //         setData(perfData)
-        //     }
-        // )
     }
 
 }
@@ -197,10 +168,5 @@ export async function getScore(setData, userId) {
     else {
         const response = await axios.get(`http://localhost:3000/user/${userId}`)
         return setData(response.data.data.score || response.data.data.todayScore)
-        //    await axios.get(`http://localhost:3000/user/${userId}`).then(
-        //         (response)=>{
-        //             setData(response.data.data.score || response.data.data.todayScore)
-        //         }
-        //     )
     }
 }
