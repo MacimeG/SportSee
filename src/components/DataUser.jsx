@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types"
 /**
  * React component for display the name of user with a little welcome message
  * @param {string} props prop for the name of user
@@ -17,5 +17,7 @@ function DataUser(props) {
     </div>
     )
 }
-
+DataUser.propTypes={
+    props: PropTypes.string
+}
 export default DataUser;
