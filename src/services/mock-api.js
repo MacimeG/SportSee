@@ -27,7 +27,8 @@ export async function getUser(setData, userId, setLoading) {
             if (d.id === +userId) {
                 const user = new User(d)
 
-                setLoading(false)
+                // setLoading(false)
+                setTimeout(()=>{setLoading(false)}, 250)
                 return setData(user)
             }
         }
@@ -129,7 +130,8 @@ export async function getUserPerf(setData, userId, setLoading) {
                 let perfData = {
                     "data": new PerformanceData(d.performance,)
                 }
-                setLoading(false)
+                // setLoading(false)
+                setTimeout(()=>{setLoading(false)}, 250)
                 return setData(perfData)
             }
         }
